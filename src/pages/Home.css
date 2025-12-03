@@ -1,0 +1,136 @@
+
+.spline-clip {
+  height: 120vh; /* whatever visible height you want */
+  overflow: hidden; /* hides bottom part */
+    clip-path: inset(0 0 200px 0); /* clips bottom 100px */
+      position: relative; /* ensure z-index works */
+  z-index: 0;
+  transform: translateY(-50px)
+}
+spline-viewer {
+    position: relative; /* or absolute */
+  z-index: 1;
+}
+
+/* About Section */
+.about-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  transform:translateY(-350px);
+}
+
+.about-image img {
+  max-width: 450px;
+  margin-bottom: 1.5rem;
+
+  /* Sharp outline with slight X offset */
+  filter: 
+    drop-shadow(2px 0 0 white)   /* slightly right */
+    drop-shadow(-2px 0 0 white)  /* slightly left */
+    drop-shadow(0 2px 0 white)   /* slightly down */
+    drop-shadow(0 -2px 0 white); /* slightly up */
+}
+
+
+
+.about-text {
+  text-align: center;
+}
+
+.about-text h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+/* Desktop layout */
+@media(min-width: 768px) {
+  .about-section {
+    flex-direction: row;
+    padding: 4rem 3rem;
+  }
+
+  .about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
+  .about-text {
+    flex: 1;
+    text-align: left;
+    padding-left: 2rem;
+  }
+
+  .about-text h2 {
+    font-size: 2.5rem;
+  }
+
+  .about-text p {
+    font-size: 1.125rem;
+  }
+}
+
+.liquidGlass-btn {
+  position: relative;
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border-radius: 55px;
+  overflow: hidden;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease;
+  z-index:100
+}
+
+.liquidGlass-btn:hover {
+  transform: scale(1.05);
+}
+.btn-text {
+  position: relative; /* needed so z-index works */
+  z-index: 5;         /* above all effect layers */
+}
+
+.chat-bubble {
+  position: absolute;
+  top: 10%;
+  left: 60%; /* adjust as needed beside image */
+  background: #fff;
+  color: #222;
+  padding: 0.5rem 1rem;
+  border-radius: 16px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.9rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  pointer-events: none;
+  white-space: nowrap;
+  transform:translateY(100px);
+
+  /* Bubble pointer */
+}
+.chat-bubble::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -10px; /* points to the image */
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-right-color: #fff; /* triangle color same as bubble */
+}
+

@@ -1,0 +1,49 @@
+/* centers the whole thing */
+.navbar-wrapper {
+  top:20px;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  z-index:10000;
+}
+
+/* the glass container */
+.navbar-container {
+  padding: 8px 20px;
+  border-radius: 50px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+/* inner nav */
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  z-index: 3;
+}
+
+/* links */
+.nav-item {
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: 0.2s ease;
+}
+
+.nav-item:hover {
+  transform: translateY(-1px);
+  color: #c9b8ff;
+}
+
+/* active */
+.nav-item.active {
+  color: #c9b8ff;
+  font-weight: 600;
+}

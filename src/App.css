@@ -1,42 +1,123 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.liquid-glass {
+  position: relative;
+  display: flex;
+  font-weight: 600;
+  overflow: hidden;
+  cursor: pointer;
+
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1);
+
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 2.2);
+}
+.liquidGlass-effect {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-radius: 55px;
+  backdrop-filter: blur(3px);
+  filter: url(#glass-distortion);
+  overflow: hidden;
+  isolation: isolate;
+}
+.liquidGlass-tint {
+  z-index: 1;
+    border-radius: 55px;
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 1, 31, 0.308);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.liquidGlass-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: 55px;
+  z-index: 2;
+box-shadow: 0 -30px 40px -20px rgba(255,255,255,0.15) inset;
+
+
+    border-top: 0.7px solid rgba(255, 255, 255, 0.356); /* very light top border */
+  border-bottom: 0.1px solid rgba(255, 255, 255, 0.3);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.liquidGlass-shine::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 26px;
+  height: 55px;
+
+  border-radius: 55px 0 0 0;
+  border-top: 1.2px solid #fff;
+  border-left: 2px solid #fff;
+
+  /* shadow from top-left corner */
+  box-shadow: inset 0.1px 0.1px 2.5px rgba(255, 255, 255, 1);
+
+  /* fade stops inward from top-left */
+  mask-image: radial-gradient(
+    farthest-corner at top left,
+    rgba(0,0,0,1) 0px,
+    rgba(0,0,0,1) 4px,
+    rgba(0,0,0,0) 20px
+  );
+  -webkit-mask-image: radial-gradient(
+    farthest-corner at top left,
+    rgba(0,0,0,1) 0px,
+    rgba(0,0,0,1) 4px,
+    rgba(0,0,0,0) 20px
+  );
+
+  /* clip so it doesn’t bleed beyond edge */
+  clip-path: inset(0 5px 0 0 round 55px 0 0 0);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+
+
+
+
+
+.liquidGlass-shine::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 26px;
+  height: 55px;
+
+  border-bottom: 1.5px solid #fff;
+  border-right: 1.5px solid #fff;
+  border-radius: 0 0 55px 0;
+
+  /* shadow from bottom-right corner */
+  box-shadow: inset -0.1px -0.1px 2.5px rgba(255, 255, 255, 1);
+
+  /* fade stops inward from bottom-right */
+  mask-image: radial-gradient(
+    farthest-corner at bottom right,
+    rgba(0,0,0,1) 0px,
+    rgba(0,0,0,1) 4px,
+    rgba(0,0,0,0) 20px
+  );
+  -webkit-mask-image: radial-gradient(
+    farthest-corner at bottom right,
+    rgba(0,0,0,1) 0px,
+    rgba(0,0,0,1) 4px,
+    rgba(0,0,0,0) 20px
+  );
+
+  /* clip to prevent bleed */
+  clip-path: inset(0 0 0 5px round 0 0 55px 0);
 }
 
-.card {
-  padding: 2em;
-}
 
-.read-the-docs {
-  color: #888;
+
+
+
+.liquidGlass-text {
+  z-index: 3;
+  font-size: 2rem;
+  font-family: "DM Sans", sans-serif;
+  color: white;
 }
