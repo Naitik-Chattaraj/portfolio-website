@@ -22,21 +22,39 @@ spline-viewer {
   padding-right: 1.5rem;
   padding-left: 1.5rem;
   transform:translateY(-350px);
+    background: radial-gradient(
+    circle at right center,
+    rgb(34, 21, 71) 0%,
+    rgba(0, 0, 0, 1) 33%
+  );
+  background-color: black;
+  font-family: 'Roboto Mono', sans-serif;
+  color: #fff;
+  max-height: 100vh;
+  background-repeat: no-repeat;
 }
 
 .about-image img {
   max-width: 450px;
   margin-bottom: 1.5rem;
-
   /* Sharp outline with slight X offset */
   filter: 
     drop-shadow(2px 0 0 white)   /* slightly right */
     drop-shadow(-2px 0 0 white)  /* slightly left */
     drop-shadow(0 2px 0 white)   /* slightly down */
-    drop-shadow(0 -2px 0 white); /* slightly up */
+    drop-shadow(0 -2px 0 white) /* slightly up */
+    grayscale(0%)
+      sepia(100%)         /* adds warmth so purple pops */
+  saturate(150%)     /* boosts color */
+  hue-rotate(270deg);
+
 }
 
-
+.litbit{
+  color: #c9b8ff;
+  font-family:'Gambarino';
+  font-size:200%;
+}
 
 .about-text {
   text-align: center;
@@ -51,6 +69,7 @@ spline-viewer {
   font-size: 1rem;
   line-height: 1.6;
   color: #ddd;
+  max-width: 650px;
 }
 
 /* Desktop layout */
@@ -75,6 +94,7 @@ spline-viewer {
 
   .about-text h2 {
     font-size: 2.5rem;
+    font-weight: 700;
   }
 
   .about-text p {
@@ -94,7 +114,8 @@ spline-viewer {
   cursor: pointer;
   background: rgba(255, 255, 255, 0.05);
   transition: transform 0.3s ease;
-  z-index:100
+  z-index:100;
+  margin-top:15px;
 }
 
 .liquidGlass-btn:hover {
@@ -102,7 +123,7 @@ spline-viewer {
 }
 .btn-text {
   position: relative; /* needed so z-index works */
-  z-index: 5;         /* above all effect layers */
+  z-index: 5;        /* above all effect layers */
 }
 
 .chat-bubble {
@@ -118,6 +139,8 @@ spline-viewer {
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   pointer-events: none;
   white-space: nowrap;
+  opacity:none;
+    visibility: hidden;
   transform:translateY(100px);
 
   /* Bubble pointer */
@@ -133,4 +156,99 @@ spline-viewer {
   border: 6px solid transparent;
   border-right-color: #fff; /* triangle color same as bubble */
 }
+
+/* Section container */
+.sec-3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 4rem 5rem;
+  color: #fff;
+    transform:translateY(-350px);
+    background: radial-gradient(
+    circle at left center,
+    rgb(34, 21, 71) 0%,
+    rgba(0, 0, 0, 1) 25%
+  );
+}
+
+/* Left side text */
+.sec-3-text {
+  flex: 1 1 40%;
+  max-width: 600px;
+}
+
+.sec-3-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #f0f0f0;
+}
+
+.sec-3-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #dcdcdc;
+}
+
+/* Right side carousel */
+.sec-3-carousel {
+  flex: 1 1 55%;
+  max-width: 600px;
+}
+
+.sec-3-carousel .carousel {
+  width: 100%;
+  border-radius: 1rem;
+}
+
+.sec-3-carousel .carousel-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card inside carousel */
+.sec-3-carousel .card {
+  border-radius: 55px;
+  width: 100%;
+    height: 450px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .sec-3 {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+
+  .sec-3-text, .sec-3-carousel {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .sec-3-text h2 {
+    font-size: 2rem;
+  }
+
+
+}
+.carousel button {
+  background-color: rgba(255,255,255,0.2);
+  color: #fff;
+  border-radius: 50%;
+  padding: 0.5rem;
+  transition: background 0.3s;
+}
+
+.carousel button:hover {
+  background-color: rgba(255,255,255,0.6);
+}
+
 
