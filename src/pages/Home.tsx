@@ -47,7 +47,7 @@ const Home = () => {
 
   // AUTOPLAY PLUGIN
   const plugin = useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true })
+    Autoplay({ delay: 3000, stopOnInteraction: true })
   );
 
   // ------------------------------
@@ -112,9 +112,9 @@ const Home = () => {
 
     const a1 = gsap.fromTo(
       sec3TextRef.current,
-      { y: 80, opacity: 0 },
+      { x: -80, opacity: 0 },
       {
-        y: 0,
+        x: 0,
         opacity: 1,
         duration: 1,
         scrollTrigger: {
@@ -128,9 +128,9 @@ const Home = () => {
 
     const a2 = gsap.fromTo(
       sec3CarouselRef.current,
-      { y: 120, opacity: 0 },
+      { x: 120, opacity: 0 },
       {
-        y: 0,
+        x: 0,
         opacity: 1,
         duration: 1,
         scrollTrigger: {
@@ -155,15 +155,95 @@ const Home = () => {
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
+// Snake
+
+useEffect(() => {
+  if (!sec3Ref.current) return;
+
+  const path = document.querySelector("#snakePath") as SVGPathElement | null;
+  if (!path) return;
+
+  const length = path.getTotalLength();
+
+  gsap.set(path, {
+    strokeDasharray: length,
+    strokeDashoffset: length,
+  });
+
+  gsap.to(path, {
+    strokeDashoffset: 0,
+    ease: "power2.inOut",
+    scrollTrigger: {
+      trigger: sec3Ref.current,
+      start: "top 95%",
+      end: "top 5%",
+      scrub: 1,
+    },
+  });
+}, []);
+
+//Snake-2
+
+useEffect(() => {
+  const path2 = document.querySelector("#snakePath2") as SVGPathElement | null;
+  if (!path2) return;
+
+  const length2 = path2.getTotalLength();
+
+  gsap.set(path2, {
+    strokeDasharray: length2,
+    strokeDashoffset: length2,
+  });
+
+  gsap.to(path2, {
+    strokeDashoffset: 0,
+    ease: "power2.inOut",
+    scrollTrigger: {
+      trigger: document.querySelector(".sec-4"), // section 4 as trigger
+      start: "bottom bottom",  // starts when bottom of section hits bottom of viewport
+      end: "top top",          // ends when top of section hits top
+      scrub: 1,
+    },
+  });
+}, []);
+
+
 
   // -----------------------------------------
   return (
     <>
       {/* Hero Section */}
       <section className="hero">
+        <div className="social-line">
+  <span className="node top"></span>
+  <div className="line"></div>
+  <span className="node bottom"></span>
+
+  <div className="social-icons">
+    <a href="#"><i className="fa-brands fa-instagram"></i></a>
+    <a href="#"><i className="fa-brands fa-x-twitter"></i></a>
+    <a href="#"><i className="fa-brands fa-linkedin"></i></a>
+    <a href="#"><i className="fa-brands fa-github"></i></a>
+  </div>
+</div>
         <LazySpline />
       </section>
-
+<svg className="snake-svg" width="100vw" height="200px" viewBox="0 0 1200 2000" preserveAspectRatio="none">
+  <path id="snakePath"
+    d="
+      M 1400 -200
+      C 1100 0, 1150 200, 900 350
+      C 700 500, 1050 700, 800 900
+      C 600 1100, 950 1300, 650 1500
+      C 350 1700, 300 1850, -300 2000
+    "
+    stroke="#35185c"
+    strokeWidth="26"
+    fill="none"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
       {/* About Section */}
       <section ref={sectionRef} className="about-section">
         <div ref={imageRef} className="about-image">
@@ -173,6 +253,8 @@ const Home = () => {
             Hello World!
           </div>
         </div>
+
+
 
         <div ref={textRef} className="about-text">
           <h2>
@@ -192,13 +274,14 @@ const Home = () => {
         </div>
       </section>
 
+
       {/* Projects Section */}
       <section className="sec-3" ref={sec3Ref}>
         <div className="sec-3-text" ref={sec3TextRef}>
           <h2>
             My <span className="litbit">Amazing</span> Projects
           </h2>
-          <p>Check out some cool stuff I’ve built.</p>
+          <p>Some of the coolest things I’ve built — crafted with logic, caffeine, and way too much obsession.</p>
 
           <div className="liquidGlass-btn">
             <span className="btn-text">Know More</span>
@@ -224,9 +307,6 @@ const Home = () => {
                   <div className="p-1">
                     <Card className="card">
                       <CardContent className="flex aspect-square items-center justify-center p-6">
-                        <span className="text-2xl font-semibold">
-                          {index + 1}
-                        </span>
                       </CardContent>
                     </Card>
                   </div>
@@ -239,6 +319,56 @@ const Home = () => {
           </Carousel>
         </div>
       </section>
+     
+<section className="sec-4">
+  <div className="sec-4-text">
+    <h2>
+      My <span className="litbit">Tech</span> Stack
+    </h2>
+    <p>
+      My arsenal of code & creativity — the technologies I rely on to build, break,
+      refine, and re-imagine the web.
+    </p>
+  </div>
+  <svg className="snake-svg snake-diagonal" width="100%" height="1200px" viewBox="0 0 1200 1000" preserveAspectRatio="none">
+  <path id="snakePath2"
+    d="
+      M 0 1200
+      C 150 1000, 300 800, 400 600
+      C 500 400, 700 200, 1200 0
+    "
+    stroke="#35185c"
+    strokeWidth="36"
+    fill="none"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+</svg>
+  {/* Tech Grid */}
+  <div className="tech-grid">
+    {[
+      { name: "HTML", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+      { name: "CSS", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+      { name: "JavaScript", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+      { name: "TypeScript", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+      { name: "React", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "Node.js", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+      { name: "Express", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+      { name: "MongoDB", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+      { name: "Tailwind", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" },
+      { name: "Vite", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vite/vite-original.svg" },
+      { name: "Git", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+      { name: "Linux", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
+    ].map((tech) => (
+      <div className="tech-card" key={tech.name}>
+        <img src={tech.src} alt={tech.name} />
+        <p>{tech.name}</p>
+      </div>
+    ))}
+  </div>
+
+</section>
+
     </>
   );
 };

@@ -11,7 +11,49 @@ spline-viewer {
     position: relative; /* or absolute */
   z-index: 1;
 }
+.social-line {
+  position: absolute;
+  left: 20px; /* adjust how close to the edge you want */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+}
 
+.line {
+  width: 2px;
+  height: 200px; /* length of the vertical line */
+  background: #fff; /* change color if needed */
+}
+
+.node {
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.social-icons {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 22px;
+}
+
+.social-icons a {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: 0.2s ease;
+}
+
+.social-icons a:hover {
+  opacity: 1;
+  color:#c9b8ff;
+}
 /* About Section */
 .about-section {
   display: flex;
@@ -71,6 +113,23 @@ spline-viewer {
   color: #ddd;
   max-width: 650px;
 }
+.snake-svg {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100vw;
+  height: 2000px;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 9999; /* ensures it stays ABOVE section 3 */
+}
+
+.about-section {
+  position: relative; /* required so svg positions correctly */
+  overflow: visible;  /* IMPORTANT: prevents top/bottom clipping */
+}
+
+
 
 /* Desktop layout */
 @media(min-width: 768px) {
@@ -218,7 +277,10 @@ spline-viewer {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
 }
-
+.card{
+  background-color: #35185c;
+  border: none;
+}
 
 /* Responsive */
 @media screen and (max-width: 1024px) {
@@ -251,4 +313,86 @@ spline-viewer {
   background-color: rgba(255,255,255,0.6);
 }
 
+.sec-4{
+  transform:translateY(-350px);
+}
+.sec-4-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #f0f0f0;
+  text-align:center;
+}
 
+.sec-4-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #dcdcdc;
+}
+.sec-4 {
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.sec-4-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.sec-4-text p {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+.tech-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 2rem;
+  place-items: center;
+}
+
+.tech-card {
+  background: rgba(255,255,255,0.05);
+  padding: 1.5rem;
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: 0.25s ease;
+  width: 140px;
+}
+
+.tech-card:hover {
+  transform: translateY(-6px) scale(1.05);
+  border-color: #a874ff;
+  box-shadow: 0 0 15px #a874ff60;
+}
+
+.tech-card img {
+  width: 55px;
+  height: 55px;
+  margin-bottom: 0.7rem;
+}
+
+.tech-card p {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.snake-diagonal {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 400px; /* adjust based on section 4 height */
+  pointer-events: none;
+  z-index: 0;
+}
+.sec-4 {
+  position: relative;
+      background: radial-gradient(
+    circle at bottom center,
+    rgb(34, 21, 71) 0%,
+    rgba(0, 0, 0, 1) 75%
+  ); /* so snake is positioned relative to section 4 */
+}
