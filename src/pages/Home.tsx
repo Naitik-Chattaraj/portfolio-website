@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import HangingCardsSection from "../components/HangingCard";
+import Footer from "../components/Footer.tsx";
 import myImage from "../assets/my-image.png";
 import "./Home.css";
 
@@ -368,7 +369,15 @@ useEffect(() => {
   </div>
 
 </section>
+{/* <section>
+<HangingCardsSection images={[
+  { src: "/events/1.png", label: "Event 1" },
+  { src: "/events/2.png", label: "Event 2" },
+  { src: "/events/3.png", label: "Event 3" },
+]} />
 
+</section> */}
+<Footer />
     </>
   );
 };

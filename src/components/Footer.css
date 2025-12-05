@@ -1,0 +1,161 @@
+/* -------------------------------- */
+/* FOOTER CONTAINER                 */
+/* -------------------------------- */
+
+#footer {
+  width: 100%;
+  background: linear-gradient(180deg, #000 0%, #22045ac5 100%);
+  color: white;
+  position: relative;
+  height: 480px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  transform: translateY(100px);
+}
+
+.contact-banner {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* -------------------------------- */
+/* INFO SECTION (Left | Center | Right) */
+/* -------------------------------- */
+
+.info-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 0rem 0rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .info-section {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* LEFT COLUMN */
+.info-column:nth-child(1) {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* CENTER COLUMN (empty) */
+.info-column:nth-child(2) {
+  text-align: center;
+}
+
+/* RIGHT COLUMN */
+.info-column:nth-child(3) {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Links */
+.info-column a {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 6px;
+  font-size: 16px;
+  color: #d1d5db;
+  transition: color 0.25s;
+}
+
+.info-column a:hover {
+  color: white;
+}
+
+/* -------------------------------- */
+/* BOTTOM ROW                       */
+/* -------------------------------- */
+.top-row {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 1rem 1rem;
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.copyright {
+  font-size: 14px;
+  color: #d1d5db;
+}
+
+/* -------------------------------- */
+/* BIG EMAIL TEXT                   */
+/* -------------------------------- */
+.email {
+  font-size: 7vw;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1;
+  white-space: nowrap;
+  margin-top: auto;
+
+  /* Base glass text */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.027),
+    rgba(255, 255, 255, 0.014)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  backdrop-filter: blur(0px);
+
+  /* 3D depth using layered shadows */
+  text-shadow:
+    0px 1px 0px rgba(255, 255, 255, 0.247),
+    0px 2px 2px rgba(0, 0, 0, 0.048),
+    0px 4px 4px rgba(0, 0, 0, 0.034),
+    0px 6px 6px rgba(0, 0, 0, 0.055),
+    0 0 20px rgba(255, 255, 255, 0.11); /* soft outer glow */
+  
+  transform: translateY(20px);
+}
+
+
+/* -------------------------------- */
+/* GLOBAL FIX                       */
+/* -------------------------------- */
+body {
+  overflow-x: hidden;
+}
+/* RIGHT COLUMN */
+.info-column:nth-child(3) {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* space between links */
+  align-items: flex-end; /* aligns all links to the right */
+}
+
+.info-column:nth-child(3) a {
+  display: flex; /* keep icon + text in a row */
+  align-items: center;
+  justify-content: flex-end; /* right-align icon + text */
+  gap: 6px;
+  color: #d1d5db;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.info-column:nth-child(3) a:hover {
+  color: white;
+}

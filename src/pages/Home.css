@@ -391,8 +391,8 @@ spline-viewer {
 .sec-4 {
   position: relative;
       background: radial-gradient(
-    circle at bottom center,
+    circle at center,
     rgb(34, 21, 71) 0%,
-    rgba(0, 0, 0, 1) 75%
+    rgba(0, 0, 0, 1) 45%
   ); /* so snake is positioned relative to section 4 */
 }
