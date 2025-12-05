@@ -63,7 +63,7 @@ spline-viewer {
   min-height: 100vh;
   padding-right: 1.5rem;
   padding-left: 1.5rem;
-  transform:translateY(-350px);
+  transform:translateY(-100px);
     background: radial-gradient(
     circle at right center,
     rgb(34, 21, 71) 0%,
@@ -225,7 +225,7 @@ spline-viewer {
   gap: 2rem;
   padding: 4rem 5rem;
   color: #fff;
-    transform:translateY(-350px);
+    transform:translateY(-100px);
     background: radial-gradient(
     circle at left center,
     rgb(34, 21, 71) 0%,
@@ -314,7 +314,7 @@ spline-viewer {
 }
 
 .sec-4{
-  transform:translateY(-350px);
+  transform:translateY(-100px);
 }
 .sec-4-text h2 {
   font-size: 2.5rem;

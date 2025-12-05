@@ -1,18 +1,13 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const LazySpline = () => {
-  const [load, setLoad] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setLoad(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "200px" } // Load slightly before entering
+      ([entry]) => setShow(entry.isIntersecting),
+      { threshold: 0.1 }
     );
 
     if (containerRef.current) observer.observe(containerRef.current);
@@ -20,20 +15,22 @@ const LazySpline = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Proper destruction
+  // Dispose viewer when hidden
   useEffect(() => {
-    return () => {
+    if (!show) {
       const viewer = document.querySelector("spline-viewer") as any;
-      if (viewer && viewer.dispose) viewer.dispose();
-    };
-  }, []);
+      if (viewer && viewer.dispose) {
+        viewer.dispose(); // stop rendering + free memory
+      }
+    }
+  }, [show]);
 
   return (
-    <div ref={containerRef} className="spline-clip">
-      {load ? (
-        <spline-viewer url="https://prod.spline.design/4CXSQkS8qxPpKaFp/scene.splinecode"></spline-viewer>
+    <div ref={containerRef} className="spline-clip" style={{ height: "100vh" }}>
+      {show ? (
+        <spline-viewer url="https://prod.spline.design/8F7t0OTSeBDPomj4/scene.splinecode"></spline-viewer>
       ) : (
-        <div style={{ height: "100vh", width: "100%", opacity: 0.3 }}>
+        <div style={{ height: "100%", width: "100%", opacity: 0.2 }}>
           Loading 3D...
         </div>
       )}
