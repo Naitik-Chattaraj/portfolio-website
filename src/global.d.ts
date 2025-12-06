@@ -6,3 +6,4 @@ declare namespace JSX {
     };
   }
 }
+declare module "imagesloaded";

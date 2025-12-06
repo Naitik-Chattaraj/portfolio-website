@@ -26,6 +26,7 @@ spline-viewer {
   width: 2px;
   height: 200px; /* length of the vertical line */
   background: #fff; /* change color if needed */
+  transform: scaleY(0);
 }
 
 .node {
@@ -33,20 +34,21 @@ spline-viewer {
   height: 10px;
   background: #fff;
   border-radius: 50%;
+  opacity:0;
 }
 
 .social-icons {
-  margin-top: 15px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   font-size: 22px;
 }
 
 .social-icons a {
   color: #fff;
   text-decoration: none;
-  opacity: 0.8;
+  opacity: 0; /* start hidden for GSAP */
   transition: 0.2s ease;
 }
 
@@ -93,10 +95,21 @@ spline-viewer {
 }
 
 .litbit{
-  color: #c9b8ff;
-  font-family:'Gambarino';
-  font-size:200%;
+  font-family: 'Gambarino';
+  font-size: 200%;
+  background: linear-gradient(90deg, #ffb8df, #8a72ff, #ffb8df);
+  background-size: 300%;
+  background-clip:text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: movegrad 5s ease-in-out infinite alternate;
 }
+
+@keyframes movegrad {
+  0% { background-position: 0% }
+  100% { background-position: 100% }
+}
+
 
 .about-text {
   text-align: center;

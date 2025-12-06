@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import HangingCardsSection from "../components/HangingCard";
+// import HangingCardsSection from "../components/HangingCard";
 import Footer from "../components/Footer.tsx";
 import myImage from "../assets/my-image.png";
 import "./Home.css";
@@ -50,6 +50,39 @@ const Home = () => {
   const plugin = useRef(
     Autoplay({ delay: 3000, stopOnInteraction: true })
   );
+  // SECTION 1 Animations
+
+const topNodeRef = useRef<HTMLSpanElement>(null);
+const lineRef = useRef<HTMLDivElement>(null);
+const bottomNodeRef = useRef<HTMLSpanElement>(null);
+const iconsRef = useRef<HTMLDivElement>(null);
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    gsap.set(".node.top, .node.bottom", { opacity: 0 });
+    gsap.set(".line", { scaleY: 0, transformOrigin: "top center" });
+    gsap.set(".social-link", { opacity: 0, y: 20 });
+
+    const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+    tl.to(".node.top", { opacity: 1, duration: 0.5 });
+    tl.to(".line", { scaleY: 1, duration: 0.7 }, "-=0.2");
+    tl.to(".node.bottom", { opacity: 1, duration: 0.5 }, "-=0.2");
+    tl.to(
+      ".social-link",
+      {
+        opacity: 1,
+        y: 25,
+        stagger: { each: 0.2, from: "start" },
+        duration: 0.5,
+      },
+      "-=0.3"
+    );
+  }, 500); // 0.3s delay — tweak if needed
+
+  return () => clearTimeout(timer);
+}, []);
+
 
   // ------------------------------
   // SECTION 2 Animations
@@ -156,6 +189,36 @@ const Home = () => {
       ScrollTrigger.getAll().forEach((st) => st.kill());
     };
   }, []);
+
+  // ------------------------------
+  // SECTION 4 Animations
+  // ------------------------------
+
+const sec4Ref = useRef<HTMLDivElement>(null);
+const sec4TextRef = useRef<HTMLDivElement>(null);
+
+useEffect(() => {
+  if (!sec4Ref.current) return;
+
+  const ctx = gsap.context(() => {
+    gsap.from(sec4TextRef.current, {
+      opacity: 0,
+      y: 60,
+      duration: 1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: sec4Ref.current,
+        start: "top 80%",
+        end: "top 50%",
+        scrub: true,
+      },
+    });
+  }, sec4Ref);
+
+  return () => ctx.revert();
+}, []);
+
+
 // Snake
 
 useEffect(() => {
@@ -215,18 +278,19 @@ useEffect(() => {
     <>
       {/* Hero Section */}
       <section className="hero">
-        <div className="social-line">
-  <span className="node top"></span>
-  <div className="line"></div>
-  <span className="node bottom"></span>
+                <div className="social-line">
+          <span ref={topNodeRef} className="node top"></span>
+          <div ref={lineRef} className="line"></div>
+          <span ref={bottomNodeRef} className="node bottom"></span>
 
-  <div className="social-icons">
-    <a href="#"><i className="fa-brands fa-instagram"></i></a>
-    <a href="#"><i className="fa-brands fa-x-twitter"></i></a>
-    <a href="#"><i className="fa-brands fa-linkedin"></i></a>
-    <a href="#"><i className="fa-brands fa-github"></i></a>
-  </div>
+<div ref={iconsRef} className="social-icons">
+  <a href="#" className="social-link"><i className="fa-brands fa-instagram"></i></a>
+  <a href="#" className="social-link"><i className="fa-brands fa-x-twitter"></i></a>
+  <a href="#" className="social-link"><i className="fa-brands fa-linkedin"></i></a>
+  <a href="#" className="social-link"><i className="fa-brands fa-github"></i></a>
 </div>
+
+        </div>
         <LazySpline />
       </section>
 <svg className="snake-svg" width="100vw" height="200px" viewBox="0 0 1200 2000" preserveAspectRatio="none">
@@ -321,14 +385,14 @@ useEffect(() => {
         </div>
       </section>
      
-<section className="sec-4">
-  <div className="sec-4-text">
+<section className="sec-4" ref={sec4Ref}>
+  <div className="sec-4-text" ref={sec4TextRef}>
     <h2>
       My <span className="litbit">Tech</span> Stack
     </h2>
     <p>
-      My arsenal of code & creativity — the technologies I rely on to build, break,
-      refine, and re-imagine the web.
+      My arsenal of code & creativity — the technologies I rely on to build,
+      break, refine, and re-imagine the web.
     </p>
   </div>
   <svg className="snake-svg snake-diagonal" width="100%" height="1200px" viewBox="0 0 1200 1000" preserveAspectRatio="none">
@@ -346,7 +410,7 @@ useEffect(() => {
   />
 </svg>
   {/* Tech Grid */}
-  <div className="tech-grid">
+   <div className="tech-grid">
     {[
       { name: "HTML", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
       { name: "CSS", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
