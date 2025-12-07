@@ -134,7 +134,7 @@ spline-viewer {
   height: 2000px;
   pointer-events: none;
   overflow: visible;
-  z-index: 9999; /* ensures it stays ABOVE section 3 */
+  z-index: 100; /* ensures it stays ABOVE section 3 */
 }
 
 .about-section {
@@ -293,6 +293,7 @@ spline-viewer {
 .card{
   background-color: #35185c;
   border: none;
+  z-index:10000;
 }
 
 /* Responsive */
@@ -319,6 +320,7 @@ spline-viewer {
   color: #fff;
   border-radius: 50%;
   padding: 0.5rem;
+  z-index:10000;
   transition: background 0.3s;
 }
 

@@ -5,6 +5,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Footer from "../components/Footer.tsx";
 import myImage from "../assets/my-image.png";
 import "./Home.css";
+import "./blobcursor.css";
+import BlobCursor from "../components/BlobCursor";
 
 import {
   Carousel,
@@ -275,7 +277,8 @@ useEffect(() => {
 
   // -----------------------------------------
   return (
-    <>
+    <>    
+        <BlobCursor fillColor="c9b8ff"/> 
       {/* Hero Section */}
       <section className="hero">
                 <div className="social-line">
@@ -309,6 +312,7 @@ useEffect(() => {
     strokeLinejoin="round"
   />
 </svg>
+
       {/* About Section */}
       <section ref={sectionRef} className="about-section">
         <div ref={imageRef} className="about-image">
@@ -442,6 +446,7 @@ useEffect(() => {
 
 </section> */}
 <Footer />
+
     </>
   );
 };
